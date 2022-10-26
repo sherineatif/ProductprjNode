@@ -21,7 +21,10 @@ function routes(Product) {
       const product = new Product(req.body);
       console.log(product);
       product.save();
-      return res.status(201).json(product);
+      return res.status(201).json({
+        success: true,
+        results: product,
+      });
     })
     .get((req, res) => {
       const query = {};
@@ -32,7 +35,10 @@ function routes(Product) {
         if (err) {
           return res.send(err);
         }
-        return res.json(products);
+        return res.json({
+          success: true,
+          results: products,
+        });
       });
     });
 
