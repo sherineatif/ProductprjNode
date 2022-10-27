@@ -3,40 +3,41 @@ DB tables are ( products , categories), the DB name is:(mongodb://localhost/Prod
 Data Examples:
 products:
 
-{
-  "_id": "63568557bf7b121f8f0a6c8e"
-  "name": "Product3",
-  "quantity": 4,
-  "price": 51,
-  "imgUrl": "https://dummyimage.com/600x400/000/fff",
-  "categoryId": 1
-}
-{
-  "_id": "6356856dbf7b121f8f0a6c90",
-  "name": "Product4",
-  "quantity": 8,
-  "price": 51,
-  "imgUrl": "https://dummyimage.com/600x400/000/fff",
-  "categoryId": 1
-}
-{
-  "_id":"635a3cd3c9238ab28d04ecb7",
-  "name": "Product9 nine",
-  "quantity": 5,
-  "price": 15,
-  "imgUrl": "https://dummyimage.com/600x400/000/fff",
-  "categoryId": 2
-}
+          {
+            "_id": "63568557bf7b121f8f0a6c8e"
+            "name": "Product3",
+            "quantity": 4,
+            "price": 51,
+            "imgUrl": "https://dummyimage.com/600x400/000/fff",
+            "categoryId": 1
+          }
+          
+            {
+              "_id": "6356856dbf7b121f8f0a6c90",
+              "name": "Product4",
+              "quantity": 8,
+              "price": 51,
+              "imgUrl": "https://dummyimage.com/600x400/000/fff",
+              "categoryId": 1
+            }
+          {
+            "_id":"635a3cd3c9238ab28d04ecb7",
+            "name": "Product9 nine",
+            "quantity": 5,
+            "price": 15,
+            "imgUrl": "https://dummyimage.com/600x400/000/fff",
+            "categoryId": 2
+          }
 ----------------------------------------------------------------
 categories:
-{
-  "_id":"6357a9b6bf7b121f8f0a6c94"
-  "name": "category one"
-}
-{
-  "_id": "6357a9d1bf7b121f8f0a6c96",
-  "name": "category two "
-}
+        {
+          "_id":"6357a9b6bf7b121f8f0a6c94"
+          "name": "category one"
+        }
+        {
+          "_id": "6357a9d1bf7b121f8f0a6c96",
+          "name": "category two "
+        }
 ----------------------------------------------------------------
 
 Get :http://localhost:4000/api/categories
