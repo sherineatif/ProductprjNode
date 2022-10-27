@@ -64,14 +64,18 @@ function routes(Product) {
     .route("/products/:id")
     .get((req, res) => res.json(req.product))
     .put((req, res) => {
-      const { product } = req;
-      product.name = req.body.name;
-      product.quantity = req.body.quantity;
-      product.price = req.body.price;
-      product.imgUrl = req.body.imgUrl;
-      product.categoryId = req.body.categoryId;
-      product.save();
-      return res.json(product);
+      Product.findById(req.params.id, (err, product) => {
+        if (err) {
+          return res.send(err);
+        }
+        product.name = req.body.name;
+        product.quantity = req.body.quantity;
+        product.price = req.body.price;
+        product.imgUrl = req.body.imgUrl;
+        product.categoryId = req.body.categoryId;
+        product.save();
+        return res.json(product);
+      });
     })
     .patch((req, res) => {
       const { product } = req;
@@ -89,40 +93,6 @@ function routes(Product) {
         }
         return res.json(product);
       });
-    });
-
-  productRouter.route("/products/:id").get((req, res) => {
-    Product.findById(req.params.id, (err, product) => {
-      if (err) {
-        return res.send(err);
-      }
-      return res.json(product);
-    });
-  });
-
-  productRouter
-    .route("/products/:id")
-    .get((req, res) => {
-      Product.findById(req.params.id, (err, product) => {
-        if (err) {
-          return res.send(err);
-        }
-        return res.json(product);
-      });
-    })
-    .patch((req, res) => {
-      Product.findById(req.params.id, (err, product) => {
-        if (err) {
-          return res.send(err);
-        }
-        product.name = req.body.name;
-        product.quantity = req.body.quantity;
-        product.price = req.body.price;
-        product.imgUrl = req.body.imgUrl;
-        product.categoryId = req.body.categoryId;
-        product.save();
-        return res.json(product);
-      });
     })
     .delete((req, res) => {
       req.product.remove((err) => {
@@ -132,6 +102,23 @@ function routes(Product) {
         return res.sendStatus(204);
       });
     });
+  productRouter.route("/products/:id").get((req, res) => {
+    Product.findById(req.params.id, (err, product) => {
+      if (err) {
+        return res.send(err);
+      }
+      return res.json(product);
+    });
+  });
+
+  productRouter.route("/products/:id").get((req, res) => {
+    Product.findById(req.params.id, (err, product) => {
+      if (err) {
+        return res.send(err);
+      }
+      return res.json(product);
+    });
+  });
 
   return productRouter;
 }
