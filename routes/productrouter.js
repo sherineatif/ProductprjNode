@@ -110,7 +110,7 @@ function routes(Product) {
         return res.json(product);
       });
     })
-    .put((req, res) => {
+    .patch((req, res) => {
       Product.findById(req.params.id, (err, product) => {
         if (err) {
           return res.send(err);
