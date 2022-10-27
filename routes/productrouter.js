@@ -1,8 +1,10 @@
 const express = require("express");
-
+const app = express();
+const cors = require("cors");
+app.use(cors());
 function routes(Product) {
   const productRouter = express.Router();
-  productRouter.route("/products").get((req, res) => {
+  productRouter.route("/products").get(cors(), (req, res) => {
     const query = {};
     if (req.query.categoryId) {
       query.categoryId = req.query.categoryId;
@@ -14,10 +16,15 @@ function routes(Product) {
       return res.json(products);
     });
   });
-
+  const options = {
+    origin: true,
+    methods: ["GET", "POST"],
+    alloweHeaders: ["Content-Type", "Authorization"],
+  };
+  app.use(cors(options));
   productRouter
     .route("/products")
-    .post((req, res) => {
+    .post(cors(options), (req, res) => {
       const product = new Product(req.body);
       console.log(product);
       product.save();
